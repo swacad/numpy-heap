@@ -35,3 +35,8 @@ h.extract_min()
 x = h.heap[0]
 
 ```
+
+###Requirements:
+Python 2.x or 3.x
+
+NumPy 1.11: This will probably work with other versions of NumPy as well but I tested with v1.11.
