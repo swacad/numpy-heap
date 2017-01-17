@@ -25,13 +25,13 @@ class Heap(object):
         parent_idx = self.get_parent_idx(child_idx)
         return self.heap[parent_idx]
 
-    def resize_up(self):
-        pass
-
-    def resize_down(self):
-        pass
-
     def insert(self, key):
+        if self.heap.shape[0] == self.size + 1:  # Check if heap is at max capacity
+            # Resize heap to double the current capacity
+            self.heap = np.resize(self.heap, self.heap.shape[0] * 2)
+        elif self.heap.shape[0] > self.size * 4:
+            self.heap = np.resize(self.heap, int(self.heap.shape[0] / 2) + 3)
+
         self.heap[self.size] = key
         key_idx = self.size
         parent_idx = self.get_parent_idx(key_idx)
@@ -81,16 +81,16 @@ class Heap(object):
 
 
 def median_maintenance():
-    file = 'data/Median.txt'
+    file = 'Median.txt'
 
     X = list()
     with open(file) as f:
         for line in f:
             X.append(int(line))
 
-    h_lo = Heap(len(X))
+    h_lo = Heap(int(len(X)/3))
 
-    h_hi = Heap(len(X))
+    h_hi = Heap(int(len(X)/3))
 
     medians = np.zeros(len(X), dtype=int)
 
