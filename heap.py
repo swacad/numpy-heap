@@ -26,6 +26,12 @@ class Heap(object):
         return self.heap[parent_idx]
 
     def insert(self, key):
+        print('Inserting key ' + str(key))
+        if type(key) == list or type(key) == np.ndarray:
+            for i in range(len(key) - 1):
+                self.insert(key[i])
+            key = key[-1]
+
         if self.heap.shape[0] == self.size + 1:  # Check if heap is at max capacity
             # Resize heap to double the current capacity
             self.heap = np.resize(self.heap, self.heap.shape[0] * 2)
@@ -94,8 +100,6 @@ def median_maintenance():
 
     medians = np.zeros(len(X), dtype=int)
 
-    # h = np.array([4, 4, 8, 9, 4, 12, 9, 11, 13, np.nan, np.nan, np.nan])
-
     if X[0] < X[1]:
         h_lo.insert(X[0] * -1)
         h_hi.insert(X[1])
@@ -150,5 +154,11 @@ def median_maintenance():
 
 
 if __name__ == '__main__':
-    median_maintenance()
-
+    # median_maintenance()
+    # h = np.array([4, 4, 8, 9, 4, 12, 9, 11, 13, np.nan, np.nan, np.nan])
+    a = [4, 4, 8, 9, 4, 12, 9, 11, 13]
+    h = Heap()
+    h.insert(a)
+    print(h.heap)
+    h.insert([7, 10, 5])
+    print(h.heap)
