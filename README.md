@@ -17,3 +17,11 @@ heap data only goes from h.heap[:h.size].  The dynamic resize will leave garbage
 array.
 
 
+###Usage:
+import heap
+
+h = heap.Heap()
+
+h.insert(1)
+
+h.extract_min()
