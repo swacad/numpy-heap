@@ -1,7 +1,5 @@
 """
-Array based implementation of min-heaps to solve median maintenance problem in O(log(i)) time.
-Where X[i] is the ith number to be given in iteration and the median must be computed for each new ith number.
-Test numbers are Median.txt
+NumPy based implemenation of min-heap data structure.
 """
 
 import numpy as np
@@ -85,80 +83,3 @@ class Heap(object):
 
         return root
 
-
-def median_maintenance():
-    file = 'Median.txt'
-
-    X = list()
-    with open(file) as f:
-        for line in f:
-            X.append(int(line))
-
-    h_lo = Heap()
-
-    h_hi = Heap()
-
-    medians = np.zeros(len(X), dtype=int)
-
-    if X[0] < X[1]:
-        h_lo.insert(X[0] * -1)
-        h_hi.insert(X[1])
-    else:
-        h_lo.insert(X[1] * -1)
-        h_hi.insert(X[0])
-
-    medians[0] = X[0]
-    medians[1] = X[1]
-
-    for i in range(2, len(X)):
-        if i < 20:
-            print('i = ' + str(i))
-            print('h_lo = ' + str(h_lo.heap))
-            print('h_lo.size = ' + str(h_lo.size))
-            print('h_hi = ' + str(h_hi.heap))
-            print('h_hi.size = ' + str(h_hi.size))
-
-        if abs(h_lo.size - h_hi.size) > 1:
-            print('IMBALANCED HEAPS!!!')
-
-        if X[i] <= h_lo.heap[0] * -1:
-            h_lo.insert(X[i] * -1)
-        else:
-            h_hi.insert(X[i])
-
-        if h_lo.size - h_hi.size > 1:
-            key = h_lo.extract_min()
-            key *= -1
-            h_hi.insert(key)
-            medians[i] = h_lo.heap[0] * -1
-        elif h_hi.size - h_lo.size > 1:
-            key = h_hi.extract_min()
-            h_lo.insert(key * -1)
-            medians[i] = h_lo.heap[0] * -1
-        else:
-            if h_lo.size > h_hi.size:
-                medians[i] = h_lo.heap[0] * -1
-            elif h_hi.size > h_lo.size:
-                medians[i] = h_hi.heap[0]
-            else:  # size of both h_lo and h_hi heaps are equal
-                medians[i] = h_lo.heap[0] * -1
-
-    print(h_lo.heap)
-    print(h_hi.heap)
-
-    answer = np.sum(medians) % 10000
-    print('answer = ' + str(answer))
-
-    for i in range(medians.shape[0]):
-        print(medians[i])
-
-
-if __name__ == '__main__':
-    # median_maintenance()
-    # h = np.array([4, 4, 8, 9, 4, 12, 9, 11, 13, np.nan, np.nan, np.nan])
-    a = [4, 4, 8, 9, 4, 12, 9, 11, 13]
-    h = Heap()
-    h.insert(a)
-    print(h.heap)
-    h.insert([7, 10, 5])
-    print(h.heap)
