@@ -18,10 +18,20 @@ array.
 
 
 ###Usage:
+```python
 import heap
 
+# Instantiate heap object
 h = heap.Heap()
 
+# Insert key 1, 5 into heap
 h.insert(1)
+h.insert(5)
 
+# Extract minimum value which is at root of heap
 h.extract_min()
+
+# Access first element of heap array directly
+x = h.heap[0]
+
+```
