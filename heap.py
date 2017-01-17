@@ -9,7 +9,7 @@ import numpy as np
 
 class Heap(object):
 
-    def __init__(self, length):
+    def __init__(self, length=2):
         self.heap = np.zeros(length)
         self.heap.fill(np.nan)
         self.size = 0
@@ -30,7 +30,7 @@ class Heap(object):
             # Resize heap to double the current capacity
             self.heap = np.resize(self.heap, self.heap.shape[0] * 2)
         elif self.heap.shape[0] > self.size * 4:
-            self.heap = np.resize(self.heap, int(self.heap.shape[0] / 2) + 3)
+            self.heap = np.resize(self.heap, int(self.heap.shape[0] / 2) + 1)
 
         self.heap[self.size] = key
         key_idx = self.size
@@ -88,9 +88,9 @@ def median_maintenance():
         for line in f:
             X.append(int(line))
 
-    h_lo = Heap(int(len(X)/3))
+    h_lo = Heap()
 
-    h_hi = Heap(int(len(X)/3))
+    h_hi = Heap()
 
     medians = np.zeros(len(X), dtype=int)
 
