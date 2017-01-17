@@ -1,2 +1,2 @@
 # numpy-heap
-NumPy-based heap data structure implementation
+NumPy-based min-heap data structure implementation
