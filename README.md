@@ -28,6 +28,10 @@ h = heap.Heap()
 h.insert(1)
 h.insert(5)
 
+# Insert list of keys into heap
+l = [6, 7, 8, 9]
+h.insert(l)
+
 # Extract minimum value which is at root of heap
 h.extract_min()
 
@@ -40,3 +44,8 @@ x = h.heap[0]
 Python 2.x or 3.x
 
 NumPy 1.11: This will probably work with other versions of NumPy as well but I tested with v1.11.
+
+###Other:
+Inserting keys contained in lists or arrays is implemented with recursion.  This means that for long lists of keys 
+(e.g. list has > 1000 elements) you're better off inserting each key individually using a loop so that you don't run 
+into recursion depth issues.  Otherwise you should have no problems inserting smaller lists of keys.
