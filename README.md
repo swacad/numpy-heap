@@ -3,7 +3,7 @@ NumPy-based min-heap data structure implementation
 
 ###Supported operations:
 
-Insert:  overloaded to support insertion of single elements and lists or ndarrays
+Insert:  overloaded to support insertion of single elements and arbitrary length lists or ndarrays
 
 Extract-min:  can use like extract-max if you multiply inputs by -1
 
@@ -44,8 +44,3 @@ x = h.heap[0]
 Python 2.x or 3.x
 
 NumPy 1.11: This will probably work with other versions of NumPy as well but I tested with v1.11.
-
-###Other:
-Inserting keys contained in lists or arrays is implemented with recursion.  This means that for long lists of keys 
-(e.g. list has > 1000 elements) you're better off inserting each key individually using a loop so that you don't run 
-into recursion depth issues.  Otherwise you should have no problems inserting smaller lists of keys.
