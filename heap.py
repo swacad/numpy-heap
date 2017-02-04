@@ -50,8 +50,22 @@ class Heap(object):
 
         self.size += 1
 
+    def get_left_child_idx(self, parent_idx):
+        return 2 * parent_idx + 1
+
+    def get_right_child_idx(self, parent_idx):
+        return 2 * parent_idx + 2
+
+    def get_left_child(self, parent_idx):
+        left_child = self.heap[self.get_left_child_idx(parent_idx)]
+        return left_child
+
+    def get_right_child(self, parent_idx):
+        right_child = self.heap[self.get_right_child_idx(parent_idx)]
+        return right_child
+
     def get_children_idx(self, parent_idx):
-        return 2 * (parent_idx + 1) - 1, 2 * (parent_idx + 1)
+        return 2 * parent_idx + 1, 2 * parent_idx + 2
 
     def get_children(self, parent_idx):
         child_1_idx, child_2_idx = self.get_parent_idx(parent_idx)
