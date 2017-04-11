@@ -1,14 +1,14 @@
 # numpy-heap
 NumPy-based min-heap data structure implementation
 
-###Supported operations:
+### Supported operations:
 
 Insert:  overloaded to support insertion of single elements and arbitrary length lists or ndarrays
 
 Extract-min:  can use like extract-max if you multiply inputs by -1
 
 
-###Other features:
+### Other features:
 Dynamically resizes array based on number of elements in array.  No need to manually set array sizes
 
 If you have a heap object, h, array can be accessed directly by using h.heap.  This is useful if you need to slice 
@@ -17,7 +17,7 @@ heap data only goes from h.heap[:h.size].  The dynamic resize will leave garbage
 array.
 
 
-###Usage:
+### Usage:
 ```python
 import heap
 
@@ -40,7 +40,7 @@ x = h.heap[0]
 
 ```
 
-###Requirements:
+### Requirements:
 Python 2.x or 3.x
 
 NumPy 1.11: This will probably work with other versions of NumPy as well but I tested with v1.11.
